@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake & Ladder - 2 Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginPage" class="loginPage">
+
+    <div class="loginBox">
+
+        <div class="logo">🎲</div>
+
+        <h1>Snake & Ladder</h1>
+
+        <p>2 Player Board Game</p>
+
+        <div class="players">
+
+            <div class="playerInput blueBox">
+
+                <h2>🔵 Player 1</h2>
+
+                <label>User Name</label>
+
+                <input
+                    id="name1"
+                    type="text"
+                    placeholder="Enter Player 1 Name"
+                >
+
+                <label>Mobile Number</label>
+
+                <input
+                    id="mobile1"
+                    type="tel"
+                    maxlength="10"
+                    placeholder="10 digit mobile number"
+                >
+
+            </div>
+
+
+            <div class="playerInput redBox">
+
+                <h2>🔴 Player 2</h2>
+
+                <label>User Name</label>
+
+                <input
+                    id="name2"
+                    type="text"
+                    placeholder="Enter Player 2 Name"
+                >
+
+                <label>Mobile Number</label>
+
+                <input
+                    id="mobile2"
+                    type="tel"
+                    maxlength="10"
+                    placeholder="10 digit mobile number"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div id="error" class="error"></div>
+
+
+        <button
+            class="startBtn"
+            onclick="startGame()"
+        >
+            🎮 START GAME
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- GAME -->
+
+<div id="gamePage" class="gamePage hidden">
+
+    <header>
+
+        <div>
+            <h1>🐍 Snake & Ladder 🎲</h1>
+            <p>2 Player Game</p>
+        </div>
+
+        <button
+            class="newBtn"
+            onclick="backHome()"
+        >
+            🏠 New Game
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <!-- PLAYERS -->
+
+        <aside>
+
+            <div
+                id="card1"
+                class="playerCard blueCard"
+            >
+
+                <div class="playerHeader">
+
+                    <span class="tokenIcon blueToken">
+                        P1
+                    </span>
+
+                    <div>
+                        <h3 id="showName1">
+                            Player 1
+                        </h3>
+
+                        <small id="showMobile1"></small>
+                    </div>
+
+                </div>
+
+                <div class="position">
+
+                    <span>Position</span>
+
+                    <b id="pos1">0</b>
+
+                </div>
+
+                <div class="progress">
+                    <div id="bar1"></div>
+                </div>
+
+            </div>
+
+
+            <div
+                id="card2"
+                class="playerCard redCard"
+            >
+
+                <div class="playerHeader">
+
+                    <span class="tokenIcon redToken">
+                        P2
+                    </span>
+
+                    <div>
+                        <h3 id="showName2">
+                            Player 2
+                        </h3>
+
+                        <small id="showMobile2"></small>
+                    </div>
+
+                </div>
+
+                <div class="position">
+
+                    <span>Position</span>
+
+                    <b id="pos2">0</b>
+
+                </div>
+
+                <div class="progress">
+                    <div id="bar2"></div>
+                </div>
+
+            </div>
+
+
+            <!-- DICE -->
+
+            <div class="diceBox">
+
+                <h3 id="turn">
+                    Player 1's Turn
+                </h3>
+
+                <div id="dice" class="dice">
+                    🎲
+                </div>
+
+                <button
+                    id="rollBtn"
+                    onclick="rollDice()"
+                >
+                    🎲 ROLL DICE
+                </button>
+
+                <p id="message">
+                    Player 1, roll the dice!
+                </p>
+
+            </div>
+
+
+            <div class="rules">
+
+                <h3>📜 Rules</h3>
+
+                <p>🎲 Roll dice on your turn.</p>
+                <p>🪜 Ladder moves upward.</p>
+                <p>🐍 Snake moves downward.</p>
+                <p>🏆 Reach 100 to win.</p>
+
+            </div>
+
+        </aside>
+
+
+        <!-- BOARD -->
+
+        <section class="boardSection">
+
+            <div id="board" class="board"></div>
+
+            <div class="legend">
+
+                <span>🔵 Player 1</span>
+                <span>🔴 Player 2</span>
+                <span>🪜 Ladder</span>
+                <span>🐍 Snake</span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- WINNER -->
+
+<div
+    id="winnerModal"
+    class="modal hidden"
+>
+
+    <div class="winnerBox">
+
+        <div class="trophy">🏆</div>
+
+        <h1>WINNER!</h1>
+
+        <h2 id="winnerName"></h2>
+
+        <p>🎉 Congratulations!</p>
+
+        <div class="winnerInfo">
+
+            <p>
+                👤 Name:
+                <b id="winnerUser"></b>
+            </p>
+
+            <p>
+                📱 Mobile:
+                <b id="winnerMobile"></b>
+            </p>
+
+            <p>
+                🎯 Position:
+                <b>100</b>
+            </p>
+
+        </div>
+
+
+        <button
+            class="againBtn"
+            onclick="playAgain()"
+        >
+            🔄 PLAY AGAIN
+        </button>
+
+
+        <button
+            class="homeBtn"
+            onclick="backHome()"
+        >
+            🏠 BACK TO LOGIN
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
